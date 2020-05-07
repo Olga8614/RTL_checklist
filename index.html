@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>RTL checklist</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="main-header container">
+      <nav class="main-navigation">
+        <div class="i18n-logo">
+
+        </div>
+		<h1><img src="img/TeamLogo6.jpg" width="200" alt="i18n team logo">Handling BIDI Languages UI checklist</h1>
+		<details>
+          <summary>Text goes in RTL direction and is right-aligned, numbers are written in LTR direction.</summary>
+          <p>Both Hebrew and Arabic alphabets have 24 characters. Please note that some characters should be written differently depending on their position in the word (beginning, middle, end and stand-alone). Sometimes browsers like IE11 and Edge display Arabic text as disjoined characters, it is a bug. </p>
+		  <img src="img/Disjoined.jpg" width="50%" alt="Top - disjoined (incorrect), bottom - joined (correct)">
+		  <p><a href="https://www.omniglot.com/writing/hebrew.htm" target="_blank">Learn more about Hebrew alphabet</a></p>
+		  <p><a href="https://www.omniglot.com/writing/arabic.htm" target="_blank">Learn more about Arabic alphabet</a></p>
+		  <p>Numbers, English names and citations within the RTL text are written in LTR direction within the text flow. Stand-alone text may be right-aligned, in general going in LTR direction. Please note that punctuation is so-called ‘weak’ characters and they are going to the end of the string, i.e. left side. In this example it is better to apply the "LTR" tag to be sure that browsers are not re-arranging the string contents incorrectly.</p>
+          <img src="img/5897_display_abnormally.jpg" alt="In right-to-left language it is written Online 8.1 version" width=1400px>
+		</details>
+		<br><br>
+		<details>
+		  <summary>URLs and File paths are always LTR</summary>
+          <p>Keep them LTR. NP if they will be right-aligned.</p>
+          <img src="img/RTL_URL.JPG" alt="URL goes in Left-to-right direction and is right-aligned within its box" width=1400px>
+		</details><br><br>
+		<details>
+		  <summary>Date formats - Numbers are written LTR, text flow is RTL</summary>
+          <p>That means that if, for instance, we have date in dd/mm/yyyy format, the result will be 2019/12/31. Please use DOJO library and don’t forget about RTL tags. </p>
+		</details><br><br>
+		<details>
+		  <summary>Arabic numerals and numbers support (optional)</summary>
+          <p>“Indic” are used in some, but not all Arabic-speaking countries, so currently they are not required in Esri software. Some browsers are displaying a mixture of 'Western' and 'Indic' numbers, it is better to avoid such behavior.</p>
+		  <p><img src="img/IndicNumbers.JPG" width="30%" alt="It is better to avoid Indic numbers"></p>
+		</details><br><br>
+		<details>
+		  <summary>Punctuation Symbols - they appear at the left side and sometimes are mirrored</summary>
+          <p>“?” should be flipped in AR-only.</p>
+          <p>“%” goes left side from the number in Arabic and Turkish (%100), not in Hebrew (100%)</p>
+		  <table style="width:30%">
+		      <tr>
+			      <th></th>
+				  <th>LTR</th>
+				  <th>RTL</th>
+			    </tr>
+				<tr>
+				    <td>greater than 1
+					</td>
+					<td>>1
+					</td>
+					<td>1<
+					</td>
+				</tr>
+				<tr>
+				    <td>less than 1
+					</td>
+					<td><1
+					</td>
+					<td>1>
+					</td>
+				</tr>
+				<tr>
+				    <td>minus 1
+					</td>
+					<td>-1
+					</td>
+					<td>1-
+					</td>
+				</tr>
+		  </table>
+          
+		  <p>Sometimes English text with punctuation may look not very good in RTL layouts. While there is no way to control user-defined text (which may be typed in any language), it is better to control the punctuation in "Always English" text like product names. You can use LTR tags to prevent browsers from moving punctuation to inappropriate positions. For example:</p>
+		  <p><img src="img/notebook_parenthesis.png" width=100% alt="ArcGIS Notebook Python 3 product name parenthesis display incorrectley"></p>
+		  <p>Solutions: </p>
+		  <p><xmp><option>ArcGIS Notebook Python 3 Standard (3.0)&lrm;</option>
+
+<option dir="ltr">ArcGIS Notebook Python 3 Standard (3.0)</option>
+
+<option style="direction:ltr;">ArcGIS Notebook Python 3 Standard (3.0)</option></xmp></p>
+
+		</details><br><br>
+		<details>
+		  <summary>Lists and Legends are right-aligned and have bullets or numbers at the right side from text.</summary>
+          <p>Legends, ordered lists and unordered lists should be right-aligned, with bullets or patches at the right side. The same is true for icons. For a Numbered list icon, don't flip it, a special icon exists in Caltcite-components <img src="img/ListIcon.png" width=55px></p>
+          <p><img src="img/ListsAndLegends.JPG" width=1400px alt="Part of WAB UI with a list and legend"></p>
+		</details><br><br>
+		<details>
+		  <summary>Menus, popups and drop-downs should respect RTL direction</summary>
+          <p><img src="img/HomeDropdown.JPG" width=1400px alt="Here is an example of a menu with a dropdown"></p>
+		</details><br><br>
+		<details>
+		  <summary>Dialog layouts should be flipped, but there are some exclusions</summary>
+          <p>The order of most UI elements should go in RTL direction in AR and HE UI. Dialog boxes should be flipped</p>
+		  <p><img src="img/Simple_dialog.JPG" width="100%" alt="Here is an example of a very simple dialog with X, OK and Cancel buttons"></p>
+          <p>While tools within their panels are following their LTR or RTL order, there is an exclusion. Widgets within the Map Frame are always positioned the same, no matter RTL or LTR.</p>
+		  <p><img src="img/Map_example.JPG" width="100%" alt="Here is an example of a toolbar with few tools going in certain order for RTL and LTR"></p>
+		</details><br><br>
+		<details>
+		  <summary>Icons - don't flip most of them. Buttons showing direction, lists and sorting orders are RTL</summary>
+          <p>Undo/Redo icons don't flip, but they switch their functionality. Numbered lists are not just mirrored, numbers should stay recognizable</p>
+		  <p><img src="img/UndoRedo.JPG" width="50%" alt="Here is an example of Undo/Redo"></p>
+		  
+		  
+		</details><br><br>
+		<details>
+		  <summary>Graphs are always LTR</summary>
+          <p>Don’t flip graphs. Axes should be the same as LTR. Be sure that all labels and other text goes proper direction. Move the graph legend (if any) to the left and change its direction (see Lists). It is OK if graph shows 2000-2019 in LTR direction and has a RTL label with 2019—2000 written.</p>
+		</details><br><br>  
+		<details>
+		  <summary>Time scales and Animations are LTR</summary>
+          <p>Everything imitating physical devices, like MP3 and MP4 players, goes LTR. Note that text under the Animation timescale in our example is correctly written in RTL direction for Arabic.</p>
+		  <p><img src="img/TimeScale.JPG" width="100%" alt="Here is an example of Time animation"></p>
+		</details><br><br>
+		<details>
+		  <summary>Map frames and map layouts are LTR</summary>
+          <p>We don't recommend to flip the map frame and widgets inside the map (Home, Zoom in, Zoom out, North Arrow, Scalebar, etc.) The verbal scale text should go RTL direction. </p>
+		</details><br><br>
+		<details>
+		  <summary>Map legends should respect LTR/RTL direction</summary>
+          <p>While in LTR languages legend patches go to the left, in AR and HE they are right-aligned.</p>
+		  <p><img src="img/Legend.jpg" width="100%" alt="Here is an example of a legend"></p>
+		</details><br><br>
+		<details>
+		  <summary>Interactive elements moving in right or left direction should follow their direction</summary>
+          <p>Examples are vertial separators between windows, right-align and left-align buttons.</p>
+          <p>Here is a "bad example" when cursor is moving one side and vertical separator is moving opposite side. Avoid such behavior!</p>
+		  <p><img src="img/RTLmoving_opposite.gif" width="50%" alt="Vertical window separator is moving opposite side from cursor moving"></p>
+          <p>Please ensure and test manually that is a tool has an arrow showing left side, it should move the element the same side as shown at the icon:</p>
+		  <p><img src="img/RTL_directions_arrows.JPG" width="50%" alt="Right-align and left-align buttons shold be tested manually to make sure that they point proper direction"></p>
+		</details><br><br>
+        
+  </div>
+</body>
+
+</html>
