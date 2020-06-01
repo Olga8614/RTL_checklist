@@ -54,17 +54,17 @@
 				<tr>
 				    <td>greater than 1
 					</td>
-					<td>>1
+					<td>&gt;1
 					</td>
-					<td>1<
+					<td>1&lt;
 					</td>
 				</tr>
 				<tr>
 				    <td>less than 1
 					</td>
-					<td><1
+					<td>&lt;1
 					</td>
-					<td>1>
+					<td>1&gt;
 					</td>
 				</tr>
 				<tr>
@@ -87,6 +87,35 @@
 <option style="direction:ltr;">ArcGIS Notebook Python 3 Standard (3.0)</option></xmp></p>
 
 		</details><br><br>
+        <details>
+            <summary>Coordinates should follow BiDi rules, see examples below.
+            </summary>
+            <p>The XY coordinates are written as in English (X, Y), but from left to right like this (Y ,X)</p>
+            <p>The negative sign follows the settings of the operating system.</p>
+            <p>The Lat Long coordinates are written as Long Lat (opposite to English), but because of the general RTL text direction Long appears at the beginning of the string at the right side and Lat appears at the end of the string at the left side</p>
+            <table style="border-spacing: 35px 15px;">
+                <tr>
+                    <th>English Direction&#9;</th>
+                    <th>Example (English)&#9;</th>
+                    <th>&#9;Arabic direction</th>
+                    <th>&#9;Example (Arabic)</th>
+                </tr>
+                <tr>
+                    <td>X, Y&#9;</td>
+                    <td>-13,319,177.019, 4,345,163.550&#9;</td>
+                    <td style="text-align: right;">&#9;Y , X</td>
+                    <td style="text-align: right;">&#9;4,345,163.550 ,13,319,177.019-</td>
+                </tr>
+                <tr>
+                    <td>Lat, Long&#9;</td>
+                    <td>119&deg;38'53.53''W, 36&deg;19'22.94''N&#9;</td>
+                    <td style="text-align: right;">&#9;Lat ,Long</td>
+                    <td style="text-align: right;">&#9;W&deg;119'38''53.53 ,N &deg;36'19''22.94</td>
+                </tr>
+            </table>
+            <br>
+            <p><i>Note:</i> Not all countries use N/S/E/W notation similar to English. In RU it is с.ш./ю.ш./в.д./з.д. Own abbreviations in native characters are widely used in TH, JA and many other countries with non-Latin alphabet. Countries where Arabic is used refer to the cardinal directions as Ash Shamaliyah (N), Al Gharbiyah (W), Ash Sharqiyah (E) and Al Janobiyah (S). Additionally, Al Wusta is used for the center. For instance, N is written in AR as ثوانی</p>
+        </details><br><br>
 		<details>
 		  <summary>Lists and Legends are right-aligned and have bullets or numbers at the right side from text.</summary>
           <p>Legends, ordered lists and unordered lists should be right-aligned, with bullets or patches at the right side. The same is true for icons. For a Numbered list icon, don't flip it, a special icon exists in Caltcite-components <img src="img/ListIcon.png" width=55px></p>
@@ -114,6 +143,11 @@
 		  
 		  
 		</details><br><br>
+        <details>
+            <summary>On/Off switchers are imitating physical devices and should not be mirrored.
+            </summary>
+            <p><img src="img/on_off.png"  alt="On/Off switchers are always the same for all languages"></p><br>
+        </details><br><br>
 		<details>
 		  <summary>Graphs are always LTR</summary>
           <p>Don’t flip graphs. Axes should be the same as LTR. Be sure that all labels and other text goes proper direction. Move the graph legend (if any) to the left and change its direction (see Lists). It is OK if graph shows 2000-2019 in LTR direction and has a RTL label with 2019—2000 written.</p>
@@ -137,7 +171,7 @@
           <p>Examples are vertial separators between windows, right-align and left-align buttons.</p>
           <p>Here is a "bad example" when cursor is moving one side and vertical separator is moving opposite side. Avoid such behavior!</p>
 		  <p><img src="img/RTLmoving_opposite.gif" width="50%" alt="Vertical window separator is moving opposite side from cursor moving"></p>
-          <p>Please ensure and test manually that is a tool has an arrow showing left side, it should move the element the same side as shown at the icon:</p>
+          <p>Please ensure and test manually that if a tool has an arrow showing left side, it should move the element the same side as shown at the icon:</p>
 		  <p><img src="img/RTL_directions_arrows.JPG" width="50%" alt="Right-align and left-align buttons shold be tested manually to make sure that they point proper direction"></p>
 		</details><br><br>
         
