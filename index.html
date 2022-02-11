@@ -6,6 +6,11 @@
   <title>RTL checklist</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    details {
+	padding-bottom: 2rem;
+	}
+  </style>
 </head>
 
 <body>
@@ -23,161 +28,258 @@
 		  <img src="img/Disjoined.jpg" width="50%" alt="Top - disjoined (incorrect), bottom - joined (correct)">
 		  <p><a href="https://www.omniglot.com/writing/hebrew.htm" target="_blank">Learn more about Hebrew alphabet</a></p>
 		  <p><a href="https://www.omniglot.com/writing/arabic.htm" target="_blank">Learn more about Arabic alphabet</a></p>
-		  <p>Numbers, English names and citations within the RTL text are written in LTR direction within the text flow. Stand-alone English text may be right-aligned, in general going in LTR direction. Please note that punctuation is so-called ‘weak’ characters and they are going to the end of the string, i.e. left side. In this example it is better to apply the "LTR" tag to be sure that browsers are not re-arranging the string contents incorrectly.</p>
-          <img src="img/5897_display_abnormally.jpg" alt="In right-to-left language it is written Online 8.1 version" width=1400px>
+		  <p>Numbers, English names, and citations within the RTL text are written in LTR direction within the text flow. Stand-alone English text may be right-aligned, in general going in a LTR direction. Punctuation is so-called weak characters, and they are placed at the end of the string on the left. In this example, the tester has wrapped part of a HE expression into the LTR tag to overwrite the browser default behavior that was incorrectly rearranging the string word order:</p>
+          <img src="img/KernelVersion.jpg" alt="In right-to-left language it is written Online 8.1 version" width=1400px>
+		  <p>
+            <a href="https://www.w3.org/International/articles/inline-bidi-markup/uba-basics#neutralcharacters" target="_blank">More detailed information about weak or neutral characters</a>
+          </p>
 		</details>
-		<br><br>
+		
+		 
 		<details>
 		  <summary>URLs and File paths are always LTR</summary>
           <p>Keep them LTR. NP if they will be right-aligned.</p>
-          <img src="img/RTL_URL.JPG" alt="URL goes in Left-to-right direction and is right-aligned within its box" width=1400px>
-		</details><br><br>
+          <figure>
+                              <img src='img/URL_LTR.jpg' style="width: 48%;">
+                              <img src='img/URL_RTL.jpg' style="width: 48%;">
+                              <img src='img/URL_RTL_incorrect.jpg' style="width: 50%;"><br>
+                              <figcaption>The &gt sign at the end of the image URL part is incorrectly wrapped to the left side of a URL placeholder.</figcaption>
+                            </figure>
+		</details>
+							 
 		<details>
 		  <summary>Date formats - Numbers are written LTR, text flow is RTL</summary>
-          <p>That means that if, for instance, we have date in dd/mm/yyyy format, the result will be 2019/12/31. Please use DOJO library and don’t forget about RTL tags. </p>
-		</details><br><br>
+          <p>
+                              If, for instance, in the DOJO library, you have a date in dd/mm/yyyy format, the day goes first, followed by the month, with the year at the end. The result string is displayed like this : 2019/12/31. Sometimes browser may reorder it incorrectly, sticking the year to the day, something like this: 312019/12/. It is a bug.
+                            </p>
+                            <figure>
+                              
+                              <img src='img/timeSliderAr.png';">
+
+                              <figcaption>Bug example:"ss:mm:hh format instead of hh:mm:ss displays in the drop-down list of the Start/End time box in the time slider pane. In this example, Arabic UI (at the right) should display 23:59:59 instead of 59:59:23 (in the red frame).</figcaption>
+                            </figure>
+
+                            <figure>
+                              <img src='img/Calendar.png';>
+                              
+
+                              <figcaption>Days of the week should also go in RTL direction. The left picture with a green arrow is correct; the right picture with a red arrow is incorrect.</figcaption>
+                            </figure>
+		</details>
 		<details>
 		  <summary>Arabic numerals and numbers support (optional)</summary>
           <p>“Indic” are used in some, but not all Arabic-speaking countries, so currently they are not required in Esri software. Some browsers are displaying a mixture of 'Western' and 'Indic' numbers, it is better to avoid such behavior.</p>
-		  <p><img src="img/IndicNumbers.JPG" width="30%" alt="It is better to avoid Indic numbers"></p>
-		</details><br><br>
+		  <figure>
+                        <img src="img/mixtureIndic.png" style="width: 600px;"><br>
+                      <figcaption>An example of mixture of Western (green boxes) and Indic (red boxes) numerals within a panel. All numerals should be either only Western, either only Indic. The combination of Indic digits and Western digit (nested red box) in the input box is inacceptable.</figcaption>
+           </figure>
+		  
+		</details>
 		<details>
 		  <summary>Punctuation Symbols - they appear at the left side and sometimes are mirrored</summary>
           <p>“?” should be flipped in AR-only.</p>
           <p>“%” goes left side from the number in Arabic and Turkish (%100), not in Hebrew (100%)</p>
-		  <table style="width:30%">
-		      <tr>
-			      <th></th>
-				  <th>LTR</th>
-				  <th>RTL</th>
-			    </tr>
-				<tr>
-				    <td>greater than 1
-					</td>
-					<td>&gt;1
-					</td>
-					<td>1&lt;
-					</td>
-				</tr>
-				<tr>
-				    <td>less than 1
-					</td>
-					<td>&lt;1
-					</td>
-					<td>1&gt;
-					</td>
-				</tr>
-				<tr>
-				    <td>minus 1
-					</td>
-					<td>-1
-					</td>
-					<td>1-
-					</td>
-				</tr>
-		  </table>
-          
-		  <p>Sometimes English text with punctuation may look not very good in RTL layouts. While there is no way to control user-defined text (which may be typed in any language), it is better to control the punctuation in "Always English" text like product names. You can use LTR tags to prevent browsers from moving punctuation to inappropriate positions. For example:</p>
-		  <p><img src="img/notebook_parenthesis.png" width=100% alt="ArcGIS Notebook Python 3 product name parenthesis display incorrectley"></p>
-		  <p>Solutions: </p>
-		  <p><xmp><option>ArcGIS Notebook Python 3 Standard (3.0)&lrm;</option>
+		  This table summarizes how math symbols should display:
+                        </p>
 
-<option dir="ltr">ArcGIS Notebook Python 3 Standard (3.0)</option>
+                            <table>
+                                <tr class="specCharacters">
+                                    <th></th>
+                                    <th>LTR</th>
+                                    <th>RTL</th>
 
-<option style="direction:ltr;">ArcGIS Notebook Python 3 Standard (3.0)</option></xmp></p>
+                                </tr>
+                                <tr class="specCharacters">
+                                    <td>greater than 2</td>
+                                    <td>&gt;2</td>
+                                    <td>2&lt; </td>
+                                </tr>
+                                <tr class="specCharacters">
+                                    <td>less than 2</td>
+                                    <td>&lt;2</td>
+                                    <td>2&gt;</td>
+                                </tr>
+                                <tr class="specCharacters">
+                                    <td>minus 2</td>
+                                    <td>-2</td>
+                                    <td>2-</td>
+                                </tr>
 
-		</details><br><br>
+                            </table>
+                            <figcaption>Examples of numbers and math symbols in different systems</figcaption>
+
+                        <p>
+                          Sometimes English text with punctuation may look not very good in RTL layouts. There is no way to control the direction of user-defined text that may be typed in any language. For UI text coded by our developers, it is better to control the punctuation in Always English text like product names. If the developer is not sure how to do it, use LTR tags to prevent browsers from moving punctuation to inappropriate positions.
+                        </p>
+                        <p>
+                          The following is an example of an issue with ArcGIS Notebook Python 3 Advanced (3.0) with parenthesis wrapped incorrectly in RTL layout.
+                        </p>
+
+                            <figure>
+                              <img src="img/NotepadIncorrect.png" style="width: 500px;" alt="ArcGIS Notebook Python 3 product name parenthesis display incorrectly">
+                              <figcaption>Punctuation is fixed by applying an LTR tag to a portion of English text inside an RTL web page.</figcaption>
+                            </figure>
+                            <p>
+                              Solutions:
+                            </p>
+                            <p><xmp><option>ArcGIS Notebook Python 3 Standard (3.0)&lrm;</option></xmp></p>
+                            <p><xmp><option dir="ltr">ArcGIS Notebook Python 3 Standard (3.0)</option></xmp></p>
+                            <p><xmp><option style="direction:ltr;">ArcGIS Notebook Python 3 Standard (3.0)</option></xmp></p>
+
+		</details>
         <details>
             <summary>Coordinates should follow BiDi rules, see examples below.
             </summary>
-            <p>The XY coordinates are written as in English (X, Y), but from left to right like this (Y ,X)</p>
-            <p>The negative sign follows the settings of the operating system.</p>
-            <p>The Lat Long coordinates are written as Long Lat (opposite to English), but because of the general RTL text direction Long appears at the beginning of the string at the right side and Lat appears at the end of the string at the left side</p>
-            <table style="border-spacing: 35px 15px;">
-                <tr>
-                    <th>English Direction&#9;</th>
-                    <th>Example (English)&#9;</th>
-                    <th>&#9;Arabic direction</th>
-                    <th>&#9;Example (Arabic)</th>
-                </tr>
-                <tr>
-                    <td>X, Y&#9;</td>
-                    <td>-13,319,177.019, 4,345,163.550&#9;</td>
-                    <td style="text-align: right;">&#9;Y , X</td>
-                    <td style="text-align: right;">&#9;4,345,163.550 ,13,319,177.019-</td>
-                </tr>
-                <tr>
-                    <td>Lat, Long&#9;</td>
-                    <td>119&deg;38'53.53''W, 36&deg;19'22.94''N&#9;</td>
-                    <td style="text-align: right;">&#9;Lat ,Long</td>
-                    <td style="text-align: right;">&#9;W&deg;119'38''53.53 ,N &deg;36'19''22.94</td>
-                </tr>
-            </table>
-            <br>
-            <p><i>Note:</i> Not all countries use N/S/E/W notation similar to English. In RU it is с.ш./ю.ш./в.д./з.д. Own abbreviations in native characters are widely used in TH, JA and many other countries with non-Latin alphabet. Countries where Arabic is used refer to the cardinal directions as Ash Shamaliyah (N), Al Gharbiyah (W), Ash Sharqiyah (E) and Al Janobiyah (S). Additionally, Al Wusta is used for the center. For instance, N is written in AR as ثوانی</p>
-        </details><br><br>
+            <p>
+                        The XY coordinates are written as in English (X, Y), but from left to right (Y ,X).
+                      </p>
+                      <p>
+                        The minus sign follows the settings of the operating system.
+                      </p>
+                      <p>
+                        The latitude and longitude coordinates are written as longitude, latitude (opposite to English), but because of the general RTL text direction, longitude appears at the beginning of the string at the right side and latitude appears at the end of the string at the left side.
+                      </p>
+
+                          <table>
+                              <tr class="coordin">
+                                  <th>English Direction</th>
+                                  <th>Example (English)</th>
+                                  <th>Arabic direction</th>
+                                  <th>Example (Arabic)</th>
+                              </tr>
+                              <tr class="coordin">
+                                  <td>X, Y</td>
+                                  <td>-13,319,177.019, 4,345,163.550</td>
+                                  <td>Y , X</td>
+                                  <td>4,345,163.550 ,13,319,177.019-</td>
+                              </tr>
+                              <tr class="coordin">
+                                  <td>Lat, Long</td>
+                                  <td>36°19'22.94''N, 119°38'53.53''W</td>
+                                  <td>Lat ,Long</td>
+                                  <td>W°119'38''53.53 ,N °36'19''22.94</td>
+                              </tr>
+                          </table>
+
+                      <p>
+                        The X and Y coordinates are written in pairs (X, Y) in a mathematical format to represent the x- axis and y-axis. While cartographers write spherical coordinates in reverse order, latitude (Y) is first and then longitude (X). Coincidently, this is the correct reading direction for Arabic users, (Y, X) if you intend to use Y,X to represent that the same location in mathematical format.
+                      </p>
+                      <p>
+                        <em>Note:</em> Not all countries use N/S/E/W notation similar to English. Abbreviations in native characters are widely used in Russia, Thailand, Japan, and many other countries with non-Latin alphabets. Often those abbreviations of hemispheres are followed by abbreviations for latitude and longitude, so more than one character is required for each coordinate notation. Countries where Arabic is used refer to the cardinal directions as Ash Shamaliyah (N), Al Gharbiyah (W), Ash Sharqiyah (E), and Al Janobiyah (S). Additionally, Al Wusta is used for the center. For instance, N is written in AR as ثوانی
+                      </p>
+        </details>
 		<details>
 		  <summary>Lists are right-aligned and have bullets or numbers at the right side from text.</summary>
-          <p>Ordered lists and unordered lists should be right-aligned, with bullets or patches at the right side. The same is true for icons. For a Numbered list icon, don't flip it, a special icon exists in Caltcite-components <img src="img/ListIcon.png" width=55px></p>
-          <p><img src="img/ListsAndLegends.JPG" width=1400px alt="Part of WAB UI with a list and legend"></p>
-          <p>An example of probably the most tricky symbology is displayed correctly in RTL:</p>
-          <p><img src="img/Rombiki.JPG" width="100%" alt="Tricky symbology"></p>
-		</details><br><br>
-		<details>
-		  <summary>Menus, popups and drop-downs should respect RTL direction</summary>
-          <p><img src="img/HomeDropdown.JPG" width=1400px alt="Here is an example of a menu with a dropdown"></p>
-		</details><br><br>
+          <p>
+                        Ordered lists and unordered lists should be right-aligned, with bullets or patches at the right side. The same is true for icons. For a numbered list icon, don't flip it; a special icon exists in <a href="https://esri.github.io/calcite-ui-icons/#list-number-rtl" target="_blank">Calcite UI Icons</a>.
+                      </p>
+
+                        <figure>
+                          <img src='img/ListsAndLegendsLTR.jpg' style="width: 48%;">
+                          <img src='img/ListsAndLegendsRTL.jpg' style="width: 48%;">
+                        <figcaption>List and legend correctly wrapped in RTL UI.</figcaption>
+                      </figure>
+ 
+                        <figure>
+                          <img src="img/Rombiki.JPG">
+                          <figcaption>An example of probably the most tricky symbology is displayed correctly in RTL. High-Low corner is at the left side, Low-High corner is at the right side both in LTR and RTL layouts, and all arrows are showing correct directions.</figcaption>
+                        </figure>
+						<p>Ordered lists are not just mirrored. Numbers and letters in bullets should stay the same.</p>
+                          <figure>
+
+                            <img src="img/ListButtonRTL.JPG"  style="width: 10%;">
+                            <img src="img/listButton.PNG"  style="width: 10%;">
+                            <figcaption>Examples of ordered list and unordered list icons displaying in RTL correctly</figcaption>
+                            <img src="img/listButtonIncorrect.PNG"  style="width: 10%; transform: scaleX(-1); border: 2px solid red;">
+                            <figcaption>An example of a numbered list icon wrapped incorrectly</figcaption>
+                          </figure>
+		</details>
 		<details>
 		  <summary>Toolbars should respect RTL direction</summary>
           <p><img src="img/Toolbars.PNG" width=1400px alt="Here is an example of a toolbar"></p>
-		</details><br><br>
+		</details> 
 		<details>
 		  <summary>Dialog layouts should be flipped, but there are some exclusions</summary>
-          <p>The order of most UI elements should go in RTL direction in AR and HE UI. Dialog boxes should be flipped</p>
+          <p>The order of most UI elements should go in RTL direction in AR and HE UI. Dialog boxes should be flipped.</p>
 		  <p><img src="img/Simple_dialog.JPG" width="100%" alt="Here is an example of a very simple dialog with X, OK and Cancel buttons"></p>
           <p>While tools within their panels are following their LTR or RTL order, there is an exclusion. Widgets within the Map Frame are always positioned the same, no matter RTL or LTR.</p>
 		  <p><img src="img/Map_example.JPG" width="100%" alt="Here is an example of a toolbar with few tools going in certain order for RTL and LTR"></p>
-		</details><br><br>
+		</details> 
 		<details>
-		  <summary>Icons - don't flip most of them. Buttons showing direction, lists and sorting orders are RTL</summary>
+		  <summary>Icons and graphics remain LTR unless they contain directional meaning.</summary>
+		  <img src="img/iconsKeepDirection.png">
           <p>Undo/Redo icons don't flip, but they switch their functionality. </p>
 		  <p><img src="img/UndoRedo.JPG" width="50%" alt="Here is an example of Undo/Redo"></p><br>
           <p>Numbered lists are not just mirrored, numbers should stay recognizable: <img src="img/ListIcon.png" width="30px"></p>
           <p>Don't mirror icons like checkmarks:<br><img src="img/Checkmarks.JPG" width="30%" alt="Don't flip checkmarks icons"></p>
 		  
 		  
-		</details><br><br>
+		</details> 
         <details>
             <summary>On/Off switchers are imitating physical devices and should not be mirrored.
             </summary>
             <p><img src="img/on_off.png"  alt="On/Off switchers are always the same for all languages"></p><br>
-        </details><br><br>
+        </details> 
 		<details>
-		  <summary>Graphs, histograms, charts and reports are always LTR</summary>
-          <p>Don’t flip graphs. Axes should be the same as LTR. Be sure that all labels and other text goes proper direction. Move the graph legend (if any) to the left and change its direction (see Lists). It is OK if graph shows 2000-2019 in LTR direction and has a RTL label with 2019—2000 written.</p>
-		</details><br><br>  
+		  <summary>Graphs, histograms, charts, and reports are LTR*</summary>
+          <figure>
+                        <img src="img/LTRgraph.png">
+                        <img src="img/RTLgraph.png">
+                    <figcaption>Don’t flip graphs. Axes should be the same as LTR. Be sure that all labels and other text are in the proper direction. Move the graph legend (if any) to the left and change its direction (see Lists).</figcaption>
+                      </figure>
+                  <p><em>* Note: There may be situations when a graph should go in RTL direction with the Y axes at the right side even in English. For instance, a graph may contain some historical or chronological data. Add an option for users to flip graphs if needed. Usually graphs and charts going in the "wrong" direction are considered low severity issues, but it is recommended that you keep them LTR for consistency reasons.</em></p>
+                  <p>
+                    Circular progress indicators derive their directionality from analog clocks and always turn in the clockwise direction.
+                  </p>
+		</details>  
 		<details>
 		  <summary>Time scales and Animations are LTR</summary>
-          <p>Everything imitating physical devices, like MP3 and MP4 players, goes LTR. Note that text under the Animation timescale in our example is correctly written in RTL direction for Arabic.</p>
-		  <p><img src="img/TimeScale.JPG" width="100%" alt="Here is an example of Time animation"></p>
-		</details><br><br>
+          <p>Everything imitating physical devices, like MP3 and MP4 players, goes LTR. Note that text under the animation timescale in the following example is correctly written in RTL direction for Arabic (right), compared to English (left):</p>
+		  <p><img src="img/TimeScale.png" width="100%" alt="Here is an example of Time animation"></p>
+		</details>
 		<details>
 		  <summary>Map frames and map layouts are LTR</summary>
-          <p>We don't recommend to flip the map frame and widgets inside the map (Home, Zoom in, Zoom out, North Arrow, Scalebar, etc.) The verbal scale text should go RTL direction. </p>
-		</details><br><br>
+          <p>
+                    It is not recommended to flip the map frame and widget positions inside the map (Home, Zoom in, Zoom out, North Arrow, Scalebar, and so on). The app author must rearrange the widget positions if  needed for the design purposes. See the following example:
+                  </p>
+                    <figure>
+                      <img src="img/positionManager.png">
+                      <figcaption>An example of Positioning Manager allowing you to set positions of widgets within the map frame in Instant Apps.</figcaption>
+                    </figure>
+                  <p>
+                    The verbal scale text should go in RTL direction.
+                  </p>
+		</details>
 		<details>
-		  <summary>Map legends should respect LTR/RTL direction</summary>
-          <p>While in LTR languages legend patches go to the left, in AR and HE usually they are right-aligned. In Pro and Desktop applications there may be an option for a cartographer to choose between positioning legend patches at the left or at the right side for all languages if it is needed tor cartographical purposes.</p>
-		  <p><img src="img/Legend.JPG" width="100%" alt="Here is an example of a legend"></p>
-		</details><br><br>
+		  <summary>Map legends should respect LTR or RTL direction</summary>
+          <p>
+                    While in LTR languages, legend patches go to the left; in AR and HE they are usually right-aligned. In ArcGIS Pro, Desktop, and some web apps, there is an option for a cartographer to choose between positioning legend patches at the left or at the right for all languages if it is needed for cartographical purposes.
+                  </p>
+                    <figure>
+                      <img src="img/legendEn.png">
+                      <img src="img/legendRTL.png">
+                      <figcaption>An example of a legend with LTR and RTL layouts</figcaption>
+                    </figure>
+		</details> 
 		<details>
 		  <summary>Interactive elements moving in right or left direction should follow their direction</summary>
-          <p>Examples are vertial separators between windows, right-align and left-align buttons.</p>
-          <p>Here is a "bad example" when cursor is moving one side and vertical separator is moving opposite side. Avoid such behavior!</p>
-		  <p><img src="img/RTLmoving_opposite.gif" width="50%" alt="Vertical window separator is moving opposite side from cursor moving"></p>
-          <p>Please ensure and test manually that if a tool has an arrow showing left side, it should move the element the same side as shown at the icon:</p>
-		  <p><img src="img/RTL_directions_arrows.JPG" width="50%" alt="Right-align and left-align buttons shold be tested manually to make sure that they point proper direction"></p>
-		</details><br><br>
+          <p>
+                    Examples are vertical separators between windows and right-align and left-align buttons.
+                  </p>
+                    <figure>
+                      <img src="img/RTLmoving_opposite.gif">
+                      <figcaption>Here is a bad example when a pointer is moving to one side and a vertical separator is moving to opposite side. Avoid such behavior.</figcaption>
+                    </figure>
+                  <p>
+                    Test manually that if a tool has an arrow it moves the element the same direction shown in the icon.
+                  </p>
+                    <figure>
+                      <img src="img/arrowsDirection.png"> 
+                      <img src="img/textEditorEn.png" style="width: 30%;">
+                      <img src="img/textEditorRtl.png" style="width: 30%;">
+                      <figcaption>If an arow is pointing to the left, it should move the element left; if an arrow is pointing to the right, it should move the element right. Right-align and left-align buttons should be applied to the text correctly.</figcaption>
+                    </figure>
+		</details> 
         
   </div>
 </body>
